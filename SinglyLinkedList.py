@@ -8,10 +8,9 @@ class LinkedList:
     def printLinkedList(self):
         dummyNode = self.head
         while dummyNode:
-            print(dummyNode.val)
+            print(dummyNode.val, end="->")
             dummyNode = dummyNode.next
-        if self.head is None:
-            print("No have any Node in LinkedList")
+        print("None")
     def AddAtBegin(self, val):
         node = Node(val)
         node.next = self.head
@@ -42,7 +41,7 @@ class LinkedList:
             count += 1
             dummyNode = dummyNode.next
         print(count)
-    def removeAnNode(self, val):
+    def removeNode(self, val):
         temp = self.head
         if temp.val == val and temp is not None:
             self.head = temp.next
@@ -56,9 +55,20 @@ class LinkedList:
             return
         prev.next = temp.next
         temp = None
-
-
-
-
-
-
+    def removeNodeAtPosition(self, index):
+        cur = self.head
+        for i in range(index):
+            cur = cur.next
+        temp = self.head
+        if self.head and self.head == cur:
+            self.head = cur.next
+            temp = None
+        while temp:
+            if temp == cur:
+                break
+            prev = temp
+            temp = temp.next
+        if temp is None:
+            return
+        prev.next = cur.next
+        cur = None
